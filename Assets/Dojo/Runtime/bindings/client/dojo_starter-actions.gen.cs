@@ -23,7 +23,7 @@ public class Actions : MonoBehaviour {
 
         return await account.ExecuteRaw(new dojo.Call[] {
             new dojo.Call{
-                to = contractAddress,
+                to = new FieldElement(contractAddress).Inner,
                 selector = "dojo_init",
                 calldata = calldata.ToArray()
             }
@@ -40,7 +40,7 @@ public class Actions : MonoBehaviour {
 
         return await account.ExecuteRaw(new dojo.Call[] {
             new dojo.Call{
-                to = contractAddress,
+                to = new FieldElement(contractAddress).Inner,
                 selector = "spawn",
                 calldata = calldata.ToArray()
             }
@@ -57,7 +57,7 @@ public class Actions : MonoBehaviour {
 
         return await account.ExecuteRaw(new dojo.Call[] {
             new dojo.Call{
-                to = contractAddress,
+                to = new FieldElement(contractAddress).Inner,
                 selector = "move",
                 calldata = calldata.ToArray()
             }

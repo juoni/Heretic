@@ -7,30 +7,17 @@ using System.Linq;
 using System.Collections.Generic;
 using Enum = Dojo.Starknet.Enum;
 
-// Type definition for `dojo::model::layout::FieldLayout` struct
-[Serializable]
-public struct FieldLayout {
-    public FieldElement selector;
-    public Layout layout;
+// Fix to use Records in Unity ref. https://stackoverflow.com/a/73100830
+using System.ComponentModel;
+
+namespace System.Runtime.CompilerServices
+{
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    internal class IsExternalInit { }
 }
 
-// Type definition for `core::byte_array::ByteArray` struct
-[Serializable]
-public struct ByteArray {
-    public string[] data;
-    public FieldElement pending_word;
-    public uint pending_word_len;
-}
 
-// Type definition for `dojo::model::layout::Layout` enum
-public abstract record Layout() : Enum {
-    public record Fixed(byte[] value) : Layout;
-    public record Struct(FieldLayout[] value) : Layout;
-    public record Tuple(Layout[] value) : Layout;
-    public record Array(Layout[] value) : Layout;
-    public record ByteArray() : Layout;
-    public record Enum(FieldLayout[] value) : Layout;
-}
+
 
 // Type definition for `core::option::Option::<core::integer::u32>` enum
 public abstract record Option<A>() : Enum {
